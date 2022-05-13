@@ -10,7 +10,7 @@ class FirebaseServices {
     firestore.collection("Notes").add({
       "title": title,
       "details": details,
-    }).whenComplete(() => showToastMsg("Notes Added Successfully!"));
+    }).whenComplete(() => showToastMsg("Added Successfully!"));
   }
 
   static Future<void> deleteNotes(String id) async {
@@ -25,6 +25,6 @@ class FirebaseServices {
     await firestore.collection("Notes").doc(id).update({
       "title": title,
       "details": details,
-    }).whenComplete(() => showToastMsg("Notes Updated Successfully!"));
+    }).whenComplete(() => showToastMsg("Updated Successfully!"));
   }
 }

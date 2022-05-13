@@ -2,15 +2,9 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:notes_app/Constants/constants.dart";
 import "package:notes_app/Firebase_Operations/firebase_services.dart";
+import 'package:notes_app/Widgets/custom_button.dart';
 
-class EditDataScreen extends StatelessWidget {
-  ///key
-  final globalKey = GlobalKey<FormState>();
-
-  ///Controllers
-  TextEditingController titleC = TextEditingController();
-  TextEditingController detailsC = TextEditingController();
-
+class EditDataScreen extends StatefulWidget {
   ///var
   String? title;
   String? details;
@@ -24,11 +18,24 @@ class EditDataScreen extends StatelessWidget {
     this.id,
   }) : super(key: key);
 
+  @override
+  State<EditDataScreen> createState() => _EditDataScreenState();
+}
+
+class _EditDataScreenState extends State<EditDataScreen> {
+  ///key
+  final globalKey = GlobalKey<FormState>();
+
+  ///Controllers
+  TextEditingController titleC = TextEditingController();
+
+  TextEditingController detailsC = TextEditingController();
+
   ///updateForm
   updateForm() async {
     if (globalKey.currentState!.validate()) {
       await FirebaseServices.updateNotes(
-              id!, titleC.text.trim(), detailsC.text.trim())
+              widget.id!, titleC.text.trim(), detailsC.text.trim())
           .onError(
         (error, stackTrace) => showToastMsg(
           error.toString(),
@@ -44,113 +51,81 @@ class EditDataScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Edit Notes"),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              await updateForm();
-            },
-            icon: const Icon(Icons.check),
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            backgroundColor: Colors.red,
-            icon: Icon(Icons.photo),
-            label: "Add Image",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.radio),
-            label: "Voice Notes",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.check),
-            label: "Save Notes",
-          ),
-        ],
       ),
       body: Container(
         height: s.height,
         width: s.width,
         child: Form(
           key: globalKey,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 5,
-                vertical: 5,
-              ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 5,
+              vertical: 5,
+            ),
+            child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const Divider(
-                    color: Colors.black38,
-                    height: 0.5,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 10,
-                    ),
-                    child: TextFormField(
-                      controller: titleC,
-                      minLines: 1,
-                      maxLines: 200,
-                      validator: (v) {
-                        if (v!.isEmpty) {
-                          return "Field Should not be Empty";
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: const Icon(
-                          Icons.title,
-                          color: Colors.black,
+                  ///Title ExpansionTile
+                  Card(
+                    child: ExpansionTile(
+                      title: const Text("Title"),
+                      children: [
+                        myDivider,
+                        TextFormField(
+                          controller: titleC,
+                          minLines: 1,
+                          maxLines: 200,
+                          // validator: (_) {},
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIcon: const Icon(
+                                Icons.title,
+                                color: Colors.black,
+                              ),
+                              hintText: "${widget.title}",
+                              hintStyle: const TextStyle(
+                                color: Colors.black,
+                              )),
                         ),
-                        hintText: "$title",
-                        hintStyle: const TextStyle(
-                          color: Colors.black,
+                        myDivider,
+                      ],
+                    ),
+                  ),
+
+                  ///Details ExpansionTile
+                  Card(
+                    child: ExpansionTile(
+                      title: const Text('Details'),
+                      children: [
+                        myDivider,
+                        TextFormField(
+                          controller: detailsC,
+                          minLines: 1,
+                          maxLines: 200,
+                          // validator: (_) {},
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIcon: const Icon(
+                                Icons.description_sharp,
+                                color: Colors.black,
+                              ),
+                              hintText: "${widget.details}",
+                              hintStyle: const TextStyle(
+                                color: Colors.black,
+                              )),
                         ),
-                      ),
+                        myDivider,
+                      ],
                     ),
                   ),
-                  const Divider(
-                    color: Colors.black38,
-                    height: 0.5,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 10,
-                    ),
-                    child: TextFormField(
-                      controller: detailsC,
-                      minLines: 1,
-                      maxLines: 200,
-                      validator: (v) {
-                        if (v!.isEmpty) {
-                          return "Field Should not be Empty";
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: const Icon(
-                            Icons.details,
-                            color: Colors.black,
-                          ),
-                          hintText: "$details",
-                          hintStyle: const TextStyle(
-                            color: Colors.black,
-                          )),
-                    ),
-                  ),
-                  const Divider(
-                    color: Colors.black38,
-                    height: 0.5,
+                  CustomButton(
+                    text: "Update Data",
+                    textColor: Colors.white,
+                    fontSize: 17,
+                    buttonColor: Colors.blue,
+                    onTap: () async {
+                      await updateForm();
+                    },
                   ),
                 ],
               ),

@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
+import 'package:google_fonts/google_fonts.dart';
 import "package:notes_app/Constants/constants.dart";
 import "package:notes_app/Firebase_Operations/firebase_services.dart";
+import 'package:notes_app/Widgets/custom_button.dart';
 
 class AddDataScreen extends StatefulWidget {
   @override
@@ -40,8 +42,6 @@ class _AddDataScreenState extends State<AddDataScreen> {
     super.dispose();
   }
 
-  int pageIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     ///Size
@@ -51,17 +51,6 @@ class _AddDataScreenState extends State<AddDataScreen> {
         title: const Text(
           "Make Your Notes",
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: IconButton(
-              onPressed: () async {
-                await saveForm();
-              },
-              icon: const Icon(Icons.check),
-            ),
-          ),
-        ],
       ),
       body: Container(
         height: s.height,
@@ -131,7 +120,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                       decoration: const InputDecoration(
                           border: InputBorder.none,
                           prefixIcon: Icon(
-                            Icons.details,
+                            Icons.description_sharp,
                             color: Colors.black,
                           ),
                           hintText: "Enter details",
@@ -143,6 +132,15 @@ class _AddDataScreenState extends State<AddDataScreen> {
                   const Divider(
                     color: Colors.black38,
                     height: 0.5,
+                  ),
+                  CustomButton(
+                    text: "Add Data",
+                    textColor: Colors.white,
+                    fontSize: 17,
+                    buttonColor: Colors.blue,
+                    onTap: () async {
+                      await saveForm();
+                    },
                   ),
                 ],
               ),

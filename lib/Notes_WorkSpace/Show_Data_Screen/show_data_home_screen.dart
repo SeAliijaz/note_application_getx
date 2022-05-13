@@ -3,8 +3,9 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:notes_app/Constants/constants.dart";
 import "package:notes_app/Firebase_Operations/firebase_services.dart";
+import 'package:notes_app/Notes_WorkSpace/Add_Data_Screen/add_data_screen.dart';
 import "package:notes_app/Notes_WorkSpace/Edit_Data_Screen/edit_data_screen.dart";
-import "package:notes_app/Widgets/connection_state.dart";
+import 'package:notes_app/Widgets/custom_progress_indicator.dart';
 
 class ShowDataScreen extends StatefulWidget {
   const ShowDataScreen({Key? key}) : super(key: key);
@@ -20,31 +21,23 @@ class _ShowDataScreenState extends State<ShowDataScreen> {
       appBar: AppBar(
         title: const Text("Notes"),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (() {
+          Navigator.push(context, MaterialPageRoute(builder: (_) {
+            return AddDataScreen();
+          }));
+        }),
+        child: const Icon(Icons.add),
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: firestore.collection("Notes").snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return ConnectionStatusWidget(
-              text: "Waiting for Connection",
-            );
-          }
-          if (snapshot.connectionState == ConnectionState.none) {
-            return ConnectionStatusWidget(
-              text: "No Connection",
-            );
-          }
-          if (!snapshot.hasData) {
-            return ConnectionStatusWidget(
-              text: "No Data yet!",
-            );
-          }
-
           if (snapshot.hasData &&
               snapshot.connectionState == ConnectionState.active) {
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
-              itemBuilder: (BuildContext context, int i) {
-                final v = snapshot.data!.docs[i];
+              itemBuilder: (BuildContext context, int index) {
+                final v = snapshot.data!.docs[index];
                 return Dismissible(
                   direction: DismissDirection.startToEnd,
                   background: const Icon(Icons.delete),
@@ -71,10 +64,14 @@ class _ShowDataScreenState extends State<ShowDataScreen> {
                           icon: const Icon(Icons.edit)),
                       title: Text(
                         "${v["title"]}".toUpperCase(),
-                        style: GoogleFonts.salsa(),
+                        style: GoogleFonts.raleway(
+                          textStyle: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                       children: [
-                        const Divider(),
+                        myDivider,
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
                           child: Align(
@@ -82,7 +79,7 @@ class _ShowDataScreenState extends State<ShowDataScreen> {
                             child: SelectableText(
                               "Details",
                               textAlign: TextAlign.center,
-                              style: GoogleFonts.salsa(
+                              style: GoogleFonts.raleway(
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
@@ -90,20 +87,20 @@ class _ShowDataScreenState extends State<ShowDataScreen> {
                             ),
                           ),
                         ),
-                        const Divider(),
+                        myDivider,
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: SelectableText(
                             "${v["details"]}",
                             textAlign: TextAlign.center,
-                            style: GoogleFonts.salsa(
+                            style: GoogleFonts.raleway(
                               textStyle: const TextStyle(
                                 fontSize: 18,
                               ),
                             ),
                           ),
                         ),
-                        const Divider(),
+                        myDivider
                       ],
                     ),
                   ),
@@ -111,8 +108,8 @@ class _ShowDataScreenState extends State<ShowDataScreen> {
               },
             );
           } else {
-            return ConnectionStatusWidget(
-              text: "Loading...",
+            return CustomProgressIndicator(
+              textMessage: "Loading...",
             );
           }
         },
