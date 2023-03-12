@@ -1,10 +1,11 @@
 # Note App
+
 A Flutter App Built Using **Flutter + (Firebase) + Getx.**
 
 # State Management 
+
 **GetX**
 
-![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)
 
 ## Show some :heart: and star the repo to support the project.
 
@@ -57,3 +58,5 @@ A Flutter App Built Using **Flutter + (Firebase) + Getx.**
 
 ## License
     Copyright (c) 2023 Muhammad Ali
+
+![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)
