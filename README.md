@@ -1,10 +1,10 @@
 # Note App
-A Flutter App Built Using Flutter - (Firebase) + Getx.
+A Flutter App Built Using **Flutter + (Firebase) + Getx.**
 
 # State Management 
-GetX
+**GetX**
 
-[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)]
+![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)
 
 ## Show some :heart: and star the repo to support the project.
 
