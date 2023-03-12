@@ -4,8 +4,7 @@ A Flutter App Built Using **Flutter + (Firebase) + Getx.**
 
 # State Management 
 
-**GetX**
-
+ * **GetX**
 
 ## Show some :heart: and star the repo to support the project.
 
@@ -41,8 +40,8 @@ A Flutter App Built Using **Flutter + (Firebase) + Getx.**
 <img src="https://user-images.githubusercontent.com/38410384/122597732-6f387500-d089-11eb-8417-133f8401cd4b.png" alt="device setting" width = "250">
 </p>
 
-### Created & Maintained By
-    Muhammad Ali
+### Created By:
+*   Muhammad Ali
 
 <a href="https://twitter.com/m_ali_ijaz_"><img src="https://user-images.githubusercontent.com/35039342/55471524-8e24cb00-5627-11e9-9389-58f3d4419153.png" width="60"></a>
 <a href="https://www.linkedin.com/in/muhammad-ali-23790821a/"><img src="https://user-images.githubusercontent.com/35039342/55471530-94b34280-5627-11e9-8c0e-6fe86a8406d6.png" width="60"></a>
