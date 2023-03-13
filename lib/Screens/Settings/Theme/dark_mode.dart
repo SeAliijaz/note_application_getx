@@ -21,7 +21,7 @@ class DarkMode extends StatelessWidget {
                   children: [
                     CustomIconButton(
                       icon: Icon(
-                        Icons.arrow_back_ios,
+                        Icons.arrow_back_ios_outlined,
                       ),
                       color: Theme.of(context).colorScheme.background,
                       onPressed: () {
@@ -58,7 +58,7 @@ class DarkMode extends StatelessWidget {
                   Get.changeThemeMode(ThemeMode.light);
                 },
                 title: "Light Mode",
-                iconData: Icons.brightness_5,
+                iconData: Icons.brightness_5_outlined,
                 subtitle: null,
               ),
               ListTileSetting(

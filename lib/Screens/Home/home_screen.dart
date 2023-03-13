@@ -31,8 +31,8 @@ class HomePage extends GetWidget<AuthController> {
                                 authController.axisCount.value == 2 ? 4 : 2;
                           },
                           icon: Icon(authController.axisCount.value == 2
-                              ? Icons.list
-                              : Icons.grid_on),
+                              ? Icons.list_outlined
+                              : Icons.grid_on_outlined),
                         ),
                         Text(
                           "Notes",
@@ -47,7 +47,7 @@ class HomePage extends GetWidget<AuthController> {
                             Get.to(() => Setting());
                           },
                           icon: Icon(
-                            Icons.settings,
+                            Icons.settings_outlined,
                           ),
                         ),
                       ],
@@ -79,7 +79,7 @@ class HomePage extends GetWidget<AuthController> {
             Get.to(() => AddNotePage());
           },
           child: Icon(
-            Icons.note_add,
+            Icons.note_add_outlined,
             size: 30,
           )),
     );

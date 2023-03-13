@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:notes_app/Services/database_services.dart';
 import 'package:notes_app/Controllers/auth_controller.dart';
 import 'package:notes_app/Models/notes_model.dart';
 import 'package:notes_app/Screens/Widgets/custom_icon_button.dart';
+import 'package:notes_app/Services/database_services.dart';
 
 class ShowNote extends StatelessWidget {
   final NoteModel noteData;
@@ -48,7 +48,7 @@ class ShowNote extends StatelessWidget {
                         showDeleteDialog(context, noteData);
                       },
                       icon: Icon(
-                        Icons.delete,
+                        Icons.delete_outline,
                       ),
                     ),
                   ],
@@ -112,7 +112,7 @@ class ShowNote extends StatelessWidget {
             }
           },
           label: Text("Save"),
-          icon: Icon(Icons.save),
+          icon: Icon(Icons.save_outlined),
         ));
   }
 }

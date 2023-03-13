@@ -13,9 +13,11 @@ class CustomIconButton extends StatelessWidget {
           color: color,
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(10)),
-      child: IconButton(
-        onPressed: onPressed,
-        icon: icon,
+      child: Center(
+        child: IconButton(
+          onPressed: onPressed,
+          icon: icon,
+        ),
       ),
     );
   }

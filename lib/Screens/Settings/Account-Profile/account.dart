@@ -25,7 +25,7 @@ class Account extends StatelessWidget {
                   children: [
                     CustomIconButton(
                       icon: Icon(
-                        Icons.arrow_back_ios,
+                        Icons.arrow_back_ios_outlined,
                       ),
                       color: Theme.of(context).colorScheme.background,
                       onPressed: () {
@@ -49,32 +49,15 @@ class Account extends StatelessWidget {
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.all(10),
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "Hi, ${userController.user.name} !\n",
-                        style: TextStyle(
-                          color: Get.isDarkMode ? Colors.white : Colors.black,
-                          fontSize: 18,
-                        ),
-                      ),
-                      WidgetSpan(
-                          child: Icon(
-                            Icons.email,
-                            size: 14,
-                          ),
-                          alignment: PlaceholderAlignment.middle),
-                      TextSpan(
-                        text: "   ${userController.user.email}\n",
-                        style: TextStyle(
-                          color: Get.isDarkMode ? Colors.white : Colors.black,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
+                child: ListTile(
+                  leading: Icon(Icons.person_outline),
+                  title: Text("Hi, ${userController.user.name}"),
+                ),
+              ),
+              Container(
+                child: ListTile(
+                  leading: Icon(Icons.email_outlined),
+                  title: Text(" ${userController.user.email}"),
                 ),
               ),
               ListTile(

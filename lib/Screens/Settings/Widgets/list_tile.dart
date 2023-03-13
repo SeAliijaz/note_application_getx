@@ -23,7 +23,7 @@ class ListTileSetting extends StatelessWidget {
           ),
           title: Text(title),
           trailing: Icon(
-            Icons.arrow_forward_ios,
+            Icons.arrow_forward_ios_outlined,
             color: Theme.of(context).iconTheme.color,
           ),
           subtitle: subtitle,

@@ -25,7 +25,7 @@ class Setting extends StatelessWidget {
                   children: [
                     CustomIconButton(
                       icon: Icon(
-                        Icons.arrow_back_ios,
+                        Icons.arrow_back_ios_outlined,
                       ),
                       color: Theme.of(context).colorScheme.background,
                       onPressed: () {
@@ -53,7 +53,7 @@ class Setting extends StatelessWidget {
                   Get.to(() => Account());
                 },
                 title: "Account",
-                iconData: Icons.person,
+                iconData: Icons.person_outline,
                 subtitle: null,
               ),
               ListTileSetting(
@@ -61,7 +61,7 @@ class Setting extends StatelessWidget {
                   Get.to(() => DarkMode());
                 },
                 title: "Dark Mode",
-                iconData: Icons.nights_stay,
+                iconData: Icons.nights_stay_outlined,
                 subtitle: null,
               ),
             ],
