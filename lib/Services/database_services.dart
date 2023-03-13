@@ -4,12 +4,14 @@ import 'package:notes_app/Models/notes_model.dart';
 import 'package:notes_app/Models/user_model.dart';
 import 'package:uuid/uuid.dart';
 
-class Database {
+class DatabaseServices {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final String userCollection = "users";
   final String noteCollection = "notes";
 
-  Future<bool> createNewUser(UserModel user) async {
+  Future<bool> createNewUser(
+    UserModel user,
+  ) async {
     try {
       await _firestore
           .collection(userCollection)
@@ -22,7 +24,9 @@ class Database {
     }
   }
 
-  Future<UserModel> getUser(String uid) async {
+  Future<UserModel> getUser(
+    String uid,
+  ) async {
     try {
       DocumentSnapshot doc =
           await _firestore.collection(userCollection).doc(uid).get();
@@ -33,9 +37,14 @@ class Database {
     }
   }
 
-  Future<void> addNote(String uid, String title, String body) async {
+  Future<void> addNote(
+    String uid,
+    String title,
+    String body,
+  ) async {
     try {
-      var uuid = Uuid().v4();
+      final v4 = Uuid().v4();
+      var uuid = v4;
       await _firestore
           .collection(userCollection)
           .doc(uid)
@@ -53,7 +62,11 @@ class Database {
   }
 
   Future<void> updateNote(
-      String uid, String title, String body, String id) async {
+    String uid,
+    String title,
+    String body,
+    String id,
+  ) async {
     try {
       await _firestore
           .collection(userCollection)

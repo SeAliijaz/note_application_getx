@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:notes_app/Auth/database.dart';
+import 'package:notes_app/Services/database_services.dart';
 import 'package:notes_app/Controllers/auth_controller.dart';
 import 'package:notes_app/Controllers/user_controller.dart';
 import 'package:notes_app/Screens/Widgets/custom_icon_button.dart';
@@ -17,9 +17,7 @@ class AddNotePage extends StatelessWidget {
       body: SafeArea(
         child: Container(
           height: size.height,
-          padding: EdgeInsets.all(
-            16.0,
-          ),
+          padding: EdgeInsets.all(16.0),
           child: Column(children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -94,13 +92,13 @@ class AddNotePage extends StatelessWidget {
               bodyController.text.length == 0) {
             showEmptyTitleDialog(context);
           } else {
-            Database().addNote(authController.user.uid, titleController.text,
-                bodyController.text);
+            DatabaseServices().addNote(authController.user.uid,
+                titleController.text, bodyController.text);
             Get.back();
           }
         },
         label: Text("Save"),
-        icon: Icon(Icons.save),
+        icon: Icon(Icons.save_outlined),
       ),
     );
   }

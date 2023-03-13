@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/Controllers/auth_controller.dart';
 import 'package:notes_app/Controllers/user_controller.dart';
-import 'package:notes_app/Screens/Auth/login_screen.dart';
 import 'package:notes_app/Screens/Auth/signup_screen.dart';
 
 class LogInScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final AuthController authController = Get.find<AuthController>();
   final UserController userController = Get.find<UserController>();
+
+  LogInScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

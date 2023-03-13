@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:notes_app/Auth/database.dart';
+import 'package:notes_app/Services/database_services.dart';
 import 'package:notes_app/Controllers/user_controller.dart';
 import 'package:notes_app/Models/user_model.dart';
 
@@ -35,7 +35,7 @@ class AuthController extends GetxController {
           name: name.text,
           email: email.text,
         );
-        Database().createNewUser(_user).then((value) {
+        DatabaseServices().createNewUser(_user).then((value) {
           if (value) {
             Get.find<UserController>().user = _user;
             Get.back();
@@ -61,7 +61,7 @@ class AuthController extends GetxController {
       );
       // .then((value) async {
       Get.find<UserController>().user =
-          await Database().getUser(userCredential.user.uid);
+          await DatabaseServices().getUser(userCredential.user.uid);
       _clearControllers();
     } catch (e) {
       Get.snackbar(

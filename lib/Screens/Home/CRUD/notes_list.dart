@@ -11,6 +11,8 @@ class NoteList extends StatelessWidget {
   final AuthController authController = Get.find<AuthController>();
   final NoteController noteController = Get.find<NoteController>();
 
+  NoteList({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Expanded(

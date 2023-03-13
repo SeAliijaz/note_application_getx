@@ -7,12 +7,15 @@ import 'package:notes_app/Utils/root.dart';
 import 'package:notes_app/Utils/theme.dart';
 
 void main() async {
+  ///Initialization
   WidgetsFlutterBinding.ensureInitialized();
+
+  ///Firebase.initializeApp
   await Firebase.initializeApp().then((value) {
     Get.put<AuthController>(AuthController());
     Get.put<UserController>(UserController());
   });
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

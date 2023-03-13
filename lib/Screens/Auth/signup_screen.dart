@@ -8,6 +8,8 @@ class SignUpScreen extends StatelessWidget {
   final AuthController authController = Get.find<AuthController>();
   final UserController userController = Get.find<UserController>();
 
+  SignUpScreen({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
